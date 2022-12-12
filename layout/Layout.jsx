@@ -5,7 +5,7 @@ const Layout = ({children, page}) => {
     return (
         <>
             <Head>
-                <title>Coffee - {page}</title>
+                <title>Coffee Store - {page}</title>
                 <meta name="description" content="Coffee Store" />
             </Head>
             <div className="md:flex">
@@ -13,7 +13,9 @@ const Layout = ({children, page}) => {
                     <Sidebar />
                 </aside>
                 <main className="md:w-8/12 xl:w-3/4 2xl:w-4/5 h-screen overflow-y-scroll">
-                    {children}
+                    <div className="pt-10">
+                        {children}
+                    </div>
                 </main>
             </div>
         </>

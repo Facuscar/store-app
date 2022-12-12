@@ -8,7 +8,7 @@ const Category = ({category}) => {
 
     return (
         <li 
-            className={` ${currentCategory.id === id ? 'bg-amber-400' : ''} flex items-center w-full border p-5 hover:bg-amber-400 hover:cursor-pointer`} 
+            className={` ${currentCategory?.id === id ? 'bg-amber-400' : ''} flex items-center w-full border p-5 hover:bg-amber-400 hover:cursor-pointer`} 
             onClick={() => handleCategoryClick(id)}
         >
             <Image width={70} height={70} src={`/assets/img/icono_${icon}.svg`} alt={`SVG Drawn of ${icon}`} className="mr-5" />

@@ -16,6 +16,10 @@ export const StoreProvider = ({children}) => {
         getCategories();
     }, []);
 
+    useEffect(() => {
+        setCurrentCategory(categories[0]);
+    }, [categories]);
+
     const handleCategoryClick = (id) => {
         setCurrentCategory(categories.find( item => item.id === id));
     }
