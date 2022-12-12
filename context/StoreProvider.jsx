@@ -5,6 +5,7 @@ const StoreContext = createContext();
 
 export const StoreProvider = ({children}) => {
     const [categories, setCategories] = useState([]);
+    const [currentCategory, setCurrentCategory] = useState({});
 
     const getCategories = async () => {
         const { data } = await axios('/api/categories');
@@ -15,9 +16,15 @@ export const StoreProvider = ({children}) => {
         getCategories();
     }, []);
 
+    const handleCategoryClick = (id) => {
+        setCurrentCategory(categories.find( item => item.id === id));
+    }
+
     return (
         <StoreContext.Provider value={{
             categories,
+            currentCategory,
+            handleCategoryClick
         }}>
             {children}
         </StoreContext.Provider>
