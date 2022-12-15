@@ -5,7 +5,7 @@ import { formatCurrency } from "../helpers";
 
 const ProductModalContent = () => {
 
-    const { product, handleModalChange } = useStore();
+    const { product, handleModalChange, addToOrder } = useStore();
     const [amount, setAmount] = useState(1);
 
     const handlePlusClick = () =>{
@@ -44,6 +44,13 @@ const ProductModalContent = () => {
                         </svg>
                     </button>
                 </div>
+                <button 
+                    type="button" 
+                    className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded" 
+                    onClick={ () => addToOrder({ ...product, amount }) }
+                >
+                    Add to chart
+                </button>
             </div>
         </div>
     )
