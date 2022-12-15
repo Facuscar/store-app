@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import useStore from "../hooks/useStore";
 import { formatCurrency } from "../helpers";
 
 const ProductModalContent = () => {
 
-    const { product, handleModalChange, addToOrder } = useStore();
+    const { product, handleModalChange, addToOrder, order } = useStore();
     const [amount, setAmount] = useState(1);
+
+    useEffect(() => {
+        if (order.some((orderProduct) => orderProduct.id === product.id )) {
+            const editProduct = order.find((orderProduct) => orderProduct.id === product.id);
+            setAmount(editProduct.amount);
+        }
+    }, [product, order]);
 
     const handlePlusClick = () =>{
         setAmount( prev => prev + 1)
@@ -47,7 +54,10 @@ const ProductModalContent = () => {
                 <button 
                     type="button" 
                     className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded" 
-                    onClick={ () => addToOrder({ ...product, amount }) }
+                    onClick={ () => {
+                        addToOrder({ ...product, amount });
+                        handleModalChange();
+                    }}
                 >
                     Add to chart
                 </button>

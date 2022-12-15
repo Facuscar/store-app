@@ -37,7 +37,8 @@ export const StoreProvider = ({children}) => {
 
     const addToOrder = ({categoryId, image, ...product}) => {
         if (order.some(orderProduct => orderProduct.id === product.id)) {
-            const updatedOrder = order.map(orderProduct => orderProduct.id === product.id ? product : productOrder)
+            const updatedOrder = order.map(orderProduct => orderProduct.id === product.id ? product : orderProduct);
+            setOrder(updatedOrder);
             return;
         }
         setOrder(prev => [...prev, product]);
@@ -53,6 +54,7 @@ export const StoreProvider = ({children}) => {
             modal,
             handleModalChange,
             addToOrder,
+            order
         }}>
             {children}
         </StoreContext.Provider>
