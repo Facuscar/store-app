@@ -1,7 +1,25 @@
 import Head from "next/head";
 import Sidebar from "../components/Sidebar";
+import useStore from "../hooks/useStore";
+import ReactModal from "react-modal";
 
 const Layout = ({children, page}) => {
+
+    const customStyles = {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+        },
+      };
+
+      ReactModal.setAppElement('#__next');
+
+      const { modal } = useStore();
+
     return (
         <>
             <Head>
@@ -18,6 +36,7 @@ const Layout = ({children, page}) => {
                     </div>
                 </main>
             </div>
+            { modal && <ReactModal isOpen={modal} style={customStyles} />}
         </>
     );
 }
