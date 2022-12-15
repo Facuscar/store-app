@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Sidebar from "../components/Sidebar";
+import ProductModalContent from "../components/ProductModal";
 import useStore from "../hooks/useStore";
 import ReactModal from "react-modal";
 
@@ -36,7 +37,10 @@ const Layout = ({children, page}) => {
                     </div>
                 </main>
             </div>
-            { modal && <ReactModal isOpen={modal} style={customStyles} />}
+            { modal && 
+                <ReactModal isOpen={modal} style={customStyles}>
+                    <ProductModalContent />
+                </ReactModal>}
         </>
     );
 }
