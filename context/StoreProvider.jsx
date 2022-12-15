@@ -36,8 +36,11 @@ export const StoreProvider = ({children}) => {
     };
 
     const addToOrder = ({categoryId, image, ...product}) => {
+        if (order.some(orderProduct => orderProduct.id === product.id)) {
+            const updatedOrder = order.map(orderProduct => orderProduct.id === product.id ? product : productOrder)
+            return;
+        }
         setOrder(prev => [...prev, product]);
-        console.log(order);
     };
 
     return (
