@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const StoreContext = createContext();
 
@@ -39,9 +40,11 @@ export const StoreProvider = ({children}) => {
         if (order.some(orderProduct => orderProduct.id === product.id)) {
             const updatedOrder = order.map(orderProduct => orderProduct.id === product.id ? product : orderProduct);
             setOrder(updatedOrder);
+            toast.success('Order updated succesfully');
             return;
         }
         setOrder(prev => [...prev, product]);
+        toast.success('Added to order succesfully');
     };
 
     return (

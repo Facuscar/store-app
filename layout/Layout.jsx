@@ -3,6 +3,9 @@ import Sidebar from "../components/Sidebar";
 import ProductModalContent from "../components/ProductModal";
 import useStore from "../hooks/useStore";
 import ReactModal from "react-modal";
+import { ToastContainer } from "react-toastify";
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = ({children, page}) => {
 
@@ -41,6 +44,8 @@ const Layout = ({children, page}) => {
                 <ReactModal isOpen={modal} style={customStyles}>
                     <ProductModalContent />
                 </ReactModal>}
+
+            <ToastContainer />
         </>
     );
 }
