@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import useStore from "../hooks/useStore";
 
 const STEPS = [
     { step: 1, name: 'Menu', url: '/', progress: 2 },
@@ -10,7 +9,11 @@ const STEPS = [
 const Steps = () => {
     const router = useRouter();
 
-    const { handleStepChange, step } = useStore();
+    const getProgress = () => {
+        if (router.pathname === '/') return 2;
+        if (router.pathname === '/order') return 50;
+        return 100;
+    }
 
     return (
         <>
@@ -18,14 +21,13 @@ const Steps = () => {
                 {STEPS.map( step => (
                     <button className="text-2xl font-bold" key={step.step} onClick={() => {
                         router.push(step.url);
-                        handleStepChange(step.step)
                     }} >
                         {step.name}
                     </button>
                 ))}
             </div>
             <div className="bg-gray-100 mb-10">
-                <div className="rounded-full bg-amber-500 text-xs leading-none h-2 text-center text-white w-10" style={ {width: `${STEPS[step-1].progress}%` } }></div>
+                <div className="rounded-full bg-amber-500 text-xs leading-none h-2 text-center text-white w-10" style={ {width: `${getProgress()}%` } }></div>
             </div>
         </>
     );

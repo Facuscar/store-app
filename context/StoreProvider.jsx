@@ -10,7 +10,6 @@ export const StoreProvider = ({children}) => {
     const [product, setProduct] = useState({});
     const [modal, setModal] = useState(false);
     const [order, setOrder] = useState([]);
-    const [step, setStep] = useState(1);
 
     const getCategories = async () => {
         const { data } = await axios('/api/categories');
@@ -63,8 +62,6 @@ export const StoreProvider = ({children}) => {
             handleModalChange,
             addToOrder,
             order,
-            step,
-            handleStepChange,
         }}>
             {children}
         </StoreContext.Provider>
