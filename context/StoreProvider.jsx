@@ -10,6 +10,7 @@ export const StoreProvider = ({children}) => {
     const [product, setProduct] = useState({});
     const [modal, setModal] = useState(false);
     const [order, setOrder] = useState([]);
+    const [step, setStep] = useState(1);
 
     const getCategories = async () => {
         const { data } = await axios('/api/categories');
@@ -36,6 +37,10 @@ export const StoreProvider = ({children}) => {
         setModal( prev => !prev);
     };
 
+    const handleStepChange = (step) => {
+        setStep(step);
+    }
+
     const addToOrder = ({categoryId, image, ...product}) => {
         if (order.some(orderProduct => orderProduct.id === product.id)) {
             const updatedOrder = order.map(orderProduct => orderProduct.id === product.id ? product : orderProduct);
@@ -57,7 +62,9 @@ export const StoreProvider = ({children}) => {
             modal,
             handleModalChange,
             addToOrder,
-            order
+            order,
+            step,
+            handleStepChange,
         }}>
             {children}
         </StoreContext.Provider>
