@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Sidebar from "../components/Sidebar";
 import ProductModalContent from "../components/ProductModal";
+import Steps from "../components/Steps";
 import useStore from "../hooks/useStore";
 import ReactModal from "react-modal";
 import { ToastContainer } from "react-toastify";
@@ -36,6 +37,7 @@ const Layout = ({children, page}) => {
                 </aside>
                 <main className="md:w-8/12 xl:w-3/4 2xl:w-4/5 h-screen overflow-y-scroll">
                     <div className="pt-10">
+                        <Steps />
                         {children}
                     </div>
                 </main>
