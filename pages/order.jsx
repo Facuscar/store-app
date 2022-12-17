@@ -1,6 +1,11 @@
+import Layout from "../layout/Layout";
+
 const Order = () => {
     return (
-        <h1>hi</h1>
+        <Layout page='Your order'>
+            <h1 className="text-4xl font-black">Your order</h1>
+            <p className="text-2xl my-10">Check your order</p>
+        </Layout>
     );
 }
 
