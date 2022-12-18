@@ -36,11 +36,7 @@ export const StoreProvider = ({children}) => {
         setModal( prev => !prev);
     };
 
-    const handleStepChange = (step) => {
-        setStep(step);
-    }
-
-    const addToOrder = ({categoryId, image, ...product}) => {
+    const addToOrder = ({categoryId, ...product}) => {
         if (order.some(orderProduct => orderProduct.id === product.id)) {
             const updatedOrder = order.map(orderProduct => orderProduct.id === product.id ? product : orderProduct);
             setOrder(updatedOrder);
