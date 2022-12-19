@@ -41,6 +41,10 @@ export const StoreProvider = ({children}) => {
         setModal( prev => !prev);
     }
 
+    const handleDeleteProduct = (id) => {
+        setOrder( prev => prev.filter( item => item.id !== id));
+    }
+
     const addToOrder = ({categoryId, ...product}) => {
         if (order.some(orderProduct => orderProduct.id === product.id)) {
             const updatedOrder = order.map(orderProduct => orderProduct.id === product.id ? product : orderProduct);
@@ -64,6 +68,7 @@ export const StoreProvider = ({children}) => {
             addToOrder,
             order,
             handleEditAmount,
+            handleDeleteProduct,
         }}>
             {children}
         </StoreContext.Provider>
