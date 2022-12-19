@@ -1,13 +1,14 @@
 import Layout from "../layout/Layout";
 import useStore from "../hooks/useStore";
+import { formatCurrency } from "../helpers";
 
 const Checkout = () => {
 
-    const { order, name, handleNameChange } = useStore();
+    const { order, name, handleNameChange, placeOrder, total } = useStore();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Submited');
+        placeOrder();
     }
 
     return (
@@ -20,7 +21,7 @@ const Checkout = () => {
                     <input id="name" type="text" className="bg-gray-200 w-full lg:w-1/3 mt-3 p-2 rounded" value={name} onChange={e => handleNameChange(e.target.value)} />
                 </div>
                 <div className="mt-10">
-                    <p className="text-2xl">Total: <span className="font-bold">${}</span></p>
+                    <p className="text-2xl">Total: <span className="font-bold">{formatCurrency(total)}</span></p>
                 </div>
                 <div className="mt-5">
                     <input 

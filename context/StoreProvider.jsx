@@ -12,6 +12,7 @@ export const StoreProvider = ({children}) => {
     const [modal, setModal] = useState(false);
     const [order, setOrder] = useState([]);
     const [name, setName] = useState('');
+    const [total, setTotal] = useState(0);
 
     const router = useRouter();
 
@@ -27,6 +28,10 @@ export const StoreProvider = ({children}) => {
     useEffect(() => {
         setCurrentCategory(categories[0]);
     }, [categories]);
+
+    useEffect(() => {
+      setTotal(order.reduce((partialSum, item) => partialSum + (item.price * item.amount) , 0));  
+    }, [order]);
 
     const handleCategoryClick = (id) => {
         router.push('/');
@@ -65,6 +70,10 @@ export const StoreProvider = ({children}) => {
         setName(newName);
     }
 
+    const placeOrder = () => {
+
+    }
+
     return (
         <StoreContext.Provider value={{
             categories,
@@ -80,6 +89,8 @@ export const StoreProvider = ({children}) => {
             handleDeleteProduct,
             name,
             handleNameChange,
+            placeOrder,
+            total,
         }}>
             {children}
         </StoreContext.Provider>
