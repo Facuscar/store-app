@@ -11,6 +11,7 @@ export const StoreProvider = ({children}) => {
     const [product, setProduct] = useState({});
     const [modal, setModal] = useState(false);
     const [order, setOrder] = useState([]);
+    const [name, setName] = useState('');
 
     const router = useRouter();
 
@@ -60,6 +61,10 @@ export const StoreProvider = ({children}) => {
         toast.success('Added to order succesfully');
     };
 
+    const handleNameChange = (newName) => {
+        setName(newName);
+    }
+
     return (
         <StoreContext.Provider value={{
             categories,
@@ -73,6 +78,8 @@ export const StoreProvider = ({children}) => {
             order,
             handleEditAmount,
             handleDeleteProduct,
+            name,
+            handleNameChange,
         }}>
             {children}
         </StoreContext.Provider>

@@ -36,7 +36,7 @@ const Layout = ({children, page}) => {
                     <Sidebar />
                 </aside>
                 <main className="ml-5 md:w-8/12 xl:w-3/4 2xl:w-4/5 h-screen overflow-y-scroll">
-                    <div className="pt-10">
+                    <div className="pl-2 pt-10">
                         <Steps />
                         {children}
                     </div>
