@@ -1,6 +1,16 @@
+import { useEffect } from "react";
 import Layout from "../layout/Layout";
+import useStore from "../hooks/useStore";
 
 const Checkout = () => {
+
+    const { order } = useStore();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Submited');
+    }
+
     return (
         <Layout page='Your order'>
             <h1 className="text-4xl font-black">Checkout</h1>
@@ -14,7 +24,12 @@ const Checkout = () => {
                     <p className="text-2xl">Total: <span className="font-bold">${}</span></p>
                 </div>
                 <div className="mt-5">
-                    <input className="bg-indigo-600 w-full lg:w-auto px-5 py-2 rounded uppercase font-bold text-white" type="button" value="Confirm order" />
+                    <input 
+                        className={`${!order.length ? 'bg-slate-100' : 'bg-indigo-600'} w-full lg:w-auto px-5 py-2 rounded uppercase font-bold text-white hover:cursor-pointer`} 
+                        type="submit" 
+                        value="Confirm order"
+                        disabled={!order.length}
+                    />
                 </div>
             </form>
         </Layout>
