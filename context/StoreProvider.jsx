@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const StoreContext = createContext();
 
@@ -10,6 +11,8 @@ export const StoreProvider = ({children}) => {
     const [product, setProduct] = useState({});
     const [modal, setModal] = useState(false);
     const [order, setOrder] = useState([]);
+
+    const router = useRouter();
 
     const getCategories = async () => {
         const { data } = await axios('/api/categories');
@@ -25,6 +28,7 @@ export const StoreProvider = ({children}) => {
     }, [categories]);
 
     const handleCategoryClick = (id) => {
+        router.push('/');
         setCurrentCategory(categories.find( item => item.id === id));
     };
 
