@@ -73,6 +73,7 @@ export const StoreProvider = ({children}) => {
     const placeOrder = async () => {
         try {
             const { data } = await axios.post('/api/orders', { order, name, total, date: Date.now().toString() });
+            console.log(data);
         } catch (error) {
             console.log(error);
         }

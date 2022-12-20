@@ -1,9 +1,19 @@
+import { PrismaClient } from "@prisma/client";
+
 const handler = async (req, res) => {
+    const prisma = new PrismaClient();
+
     if (req.method === "POST") {
-        console.log(req.body);
+        const order = await prisma.order.create({
+            data: {
+                name: req.body.name,
+                total: req.body.total,
+                order: req.body.order,
+                date: req.body.date,
+            }
+        })
+        res.json({ order });
     }
-    
-    res.json({ hello: 'world' });
 }
 
 export default handler;
