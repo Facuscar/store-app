@@ -72,8 +72,18 @@ export const StoreProvider = ({children}) => {
 
     const placeOrder = async () => {
         try {
-            const { data } = await axios.post('/api/orders', { order, name, total, date: Date.now().toString() });
-            console.log(data);
+            await axios.post('/api/orders', { order, name, total, date: Date.now().toString() });
+
+            setCurrentCategory(categories[0]);
+            setProduct({});
+            setOrder([]);
+            setName('');
+            setTotal(0);
+
+            toast.success('Order submitted succesfully');
+            setTimeout(() => {
+                router.push('/');
+            }, 3000);
         } catch (error) {
             console.log(error);
         }
