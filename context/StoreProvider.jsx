@@ -70,8 +70,12 @@ export const StoreProvider = ({children}) => {
         setName(newName);
     }
 
-    const placeOrder = () => {
-
+    const placeOrder = async () => {
+        try {
+            const { data } = await axios.post('/api/orders', { order, name, total, date: Date.now().toString() });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (

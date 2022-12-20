@@ -2,7 +2,7 @@ import Layout from "../layout/Layout"
 import useStore from "../hooks/useStore"
 import Product from "../components/Product";
 
-export default function Home({categories}) {
+export default function Home() {
 
   const { currentCategory } = useStore();
 
