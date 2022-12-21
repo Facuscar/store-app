@@ -12,8 +12,17 @@ const handler = async (req, res) => {
                 date: req.body.date,
             }
         })
-        res.json({ order });
+        res.status(200).json({ order });
+        return;
     }
+
+    const orders = await prisma.order.findMany({
+        where: {
+            state: false,
+        },
+    })
+
+    res.status(200).json(orders);
 }
 
 export default handler;
